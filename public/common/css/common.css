@@ -1,0 +1,353 @@
+.display-none{
+	display: none;
+}
+.clear-both{
+    clear: both;
+}
+
+/* Loader */
+div#loader {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,0,0.5)url("../../images/loader.svg") no-repeat center center;
+	z-index: 1100;
+	background-size: 120px 120px;
+	display:none;
+}
+.admin_errormsg{margin: 0 auto;
+	margin-bottom: 20px;
+	max-width: 545px;}
+.help-block{color: #ff0000;font-weight: 550;margin-bottom: 10px;}
+.resetpw{font-size: 42px !important;}
+
+.btn-orange {
+	background-color: #e63318;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	letter-spacing: 2px;
+	padding: 6px 32px;
+	cursor: pointer;
+}
+
+.btn-orange:hover,
+.btn-orange:focus {
+	background-color: #c3240c;
+	color:#fff;
+}
+.select_photo{margin-bottom: 28px; padding: 10px 20px; }
+.select_photo:hover{background-color: #00b050;}
+button:focus{outline:0;}
+.parsley-minlength, .parsley-equalto, .parsley-required, .parsley-errors-list{font-weight: 550;
+    font-size: 16px;
+    margin-top: -8px;margin-bottom: 10px;}
+.modal-body .parsley-minlength, .parsley-equalto, .parsley-required, .parsley-errors-list{margin-top: 5px;}
+.user-actions-opt #del-user {
+    border-radius: 10px;
+}
+.form-control-text-area {
+   /* border: 2px solid #bfbfbf;*/
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+	border: 3px solid #7f7f7f;
+}
+.modal-body .form-control-text-area{border: 2px solid #bfbfbf;border-radius: 10px;}
+.btn-primary.focus, .btn-primary:focus{box-shadow: none;}
+textarea:focus{outline:0;}
+.btn-primary:not([disabled]):not(.disabled):active{border-color: transparent;
+    box-shadow: none;}
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active{background-color: #22aa9d;}
+.table-responsive .data-table td{padding: 20px 10px;}
+.btnwidth{width: 300px !important; margin: 0 auto;display: table;}
+.btnred{background-color: #e63318!important;}
+.greenform_color:hover{background-color: #28b3b6!important;}
+.table-responsive .data-table th{text-transform: capitalize!important;font-size: 17px;}
+.table-responsive .data-table.school th{text-transform: uppercase !important;font-size: 17px;}
+.updownicon .fa-sort, .fa-caret-up, .fa-caret-down{margin-left:5px;}
+.header .main-nav #signup-btn{background-color: #22aa9d;}
+.form-control:focus{border-color: #22aa9d;}
+textarea:focus{border-color: #22aa9d;}
+.btnmtop{margin-top: 30px;}
+.user-dt p .coachlink{color: #4f4f4f;
+    font-size: 20px;}
+.recentcustomer.table-responsive .data-table th{text-transform: uppercase!important;}
+.recentcustomer{padding-top: 20px;}
+.top-search-options .form-control:focus{border-color: #22aa9d;}
+
+/*kidrend css*/
+.school_details .user-actions-opt .reactive-user-btn{background-color: transparent;
+padding: 10px 4px;
+border: 4px solid #5ec456;
+border-radius: 10px;
+text-transform: uppercase;
+font-weight: 700 !important;
+color: #5ec456;
+float: left;
+margin-right: 15px;
+margin-top: 12px;
+font-size: 18px;
+letter-spacing: 2px;}
+.width100{width:100% !important;}
+.form-control:disabled{color:gray;}
+.user-dt p.student-parent-count span{font-size: 21px;}
+.view-student-btn{
+    background-color: rgb(17, 173, 1);
+    border: 4px solid rgb(17, 173, 1);
+    color: #fff;
+    padding: 10px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    display: block;
+    width: 199px;
+}
+a.view-student-btn { color: #fff;}
+
+@media only screen and (max-width: 1199px){
+	.header .main-nav .navbar-nav .nav-link{margin: 0 3px;}
+	.footer-lists ul{margin-left: 30px;}
+	.footer-lists ul li{margin: 0px 16px;}
+	.login-top h1{font-size: 38px;}
+	#login-right{text-align: left;}
+	#login-right a{margin-left: 0px;}
+	.btnwidth{width: 100%!important;}
+	.proborder_right{width: 300px!important;}
+	.proborder{width: 300px!important;}
+
+}
+@media only screen and (max-width: 991px){
+	.header .navbar-light .navbar-toggler{border-color: #22aa9d;margin-top: 27px;}
+	.header .navbar-toggler .fa-bars{color:#22aa9d;}
+	.header button:focus{outline:none;}
+	.header .ml-auto{margin-top: 38px;}
+	.footer .footer_logo{width: 200px;
+		height: 130px;
+		margin-left: 10px;}
+	.footer-lists ul li{margin: 0px 5px;}
+	.login-top h1{font-size: 30px;}
+	#login-right{text-align: left;
+		line-height: 1.9;
+		margin-bottom: 0px;}
+	.user-dt-img {
+    padding-top: 0px;
+    margin-bottom: 10px;
+    margin-top: -35px;}
+    .mtop {
+    padding-top: 28px !important;
+    padding-bottom: 30px !important;}
+    /*.dash-col {*/
+    /*min-height: 140px !important;}*/
+    #riders-table .header{line-height: 2.4;}
+    .table-responsive #riders-table .header{line-height: 1.2;}
+    .profile_border h3{font-size: 24px;}
+    .user-dt-img img{margin-top: 20px;}
+    .proborder{width: 100%!important;}
+    .proborder_right{display:none!important;}
+	.footer-lists ul{margin-left: 14px;}
+	.footer-lists{margin-top: 45px;}
+	.footer .footer_logo{height: 110px;}
+
+    .view-student-btn{
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width: 767px){
+	.footer .footer_logo{margin:0 auto;}
+	.footer-lists{margin-top: 10px;padding-left: 0px;}
+	.footer-lists ul{margin-left: 0px;}
+	.footer .d-flex{margin: 0 auto;}
+	.footer-lists ul li{display: block;
+		text-align: center;}
+	.footer-lists ul li a{margin: 18px 0px;}
+	#login-right{text-align: center;
+		margin: 0 auto;
+		margin-top: 4px;}
+	.header .main-nav #signup-btn{display: initial;}
+	.resetpw{font-size: 38px !important;}
+	.header .main-nav #login-btn{float: left;
+		margin-top: -7px;
+		margin-right: 20px;}
+	.big-heading {
+    font-size: 30px;}
+}
+@media only screen and (max-width: 575px){
+/*kidrend css*/
+	#photo-upload .upload-btn-wrapper button{padding: 6px 8px;}
+	#photo-upload img{margin-right: 7px;}
+}
+@media only screen and (max-width: 568px){
+    .user-dt-img {
+    margin-top: 0px;}
+    .user-dt-wrap .mb-5 {
+    margin-bottom: 2rem!important;}
+}
+@media only screen and (max-width: 480px){
+	.msg_section h1{font-size: 100px!important;}
+	.msgborder{width: 90px!important;}
+	.msg_section p{font-size: 18px!important;}
+	.msg_section{padding-left: 15px;
+    padding-right: 15px;width: auto !important;padding-top: 70px;}
+}
+@media only screen and (max-width: 380px){
+	.resetpw {
+		font-size: 32px !important;}
+	#login-right a{line-height: 1.5;}
+	.btn-pink{font-size: 16px;}
+	.dash-col h2 {
+    font-size: 24px !important;}
+    .pr-box-heading {
+    font-size: 24px;}
+    .fblog {
+    font-size: 23px !important;}
+    .notification span{padding: 15px 7px !important;
+    font-size: 17px !important;}
+    .parsley-minlength, .parsley-equalto, .parsley-required, .parsley-errors-list{font-size: 15px;}
+    .recipe_details {
+    margin-top: 35px !important;}
+    #box-date #day{font-size: 20px;}
+#box-date #time{font-size: 28px;}
+h3{margin-bottom: 22px !important;
+    margin-top: 22px;}
+    .big-heading{margin-bottom: 10px !important;}
+
+}
+@media only screen and (max-width: 320px){
+    .header .main-nav .linkDropdown .dropdown-menu{min-width: 280px;}
+}
+
+/* Notification message */
+
+.notification span {
+	color: #fff;
+	border-radius: 11px;
+}
+
+.notification.success .close-ntf {
+	color: #6bbfa3;
+	background-color:transparent;
+}
+
+.notification.success span {
+	background-color: #6bbfa3;
+}
+
+.notification.error .close-ntf {
+	color: #e63318;
+	background-color: transparent;
+}
+
+.notification.error span {
+	background-color: #e63318;
+}
+
+.notification.info .close-ntf {
+	color: #504e4d;
+}
+
+.notification.info span {
+	background-color: #504e4d;
+}
+/*.notification {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    background-color:transparent;
+    border-radius: 4px;f
+    max-width: 820px;
+    margin: 20px auto 15px auto;
+}*/
+
+.notification span {
+    padding: 15px;
+    /*font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;*/
+}
+
+.notification .close-ntf {
+    background: transparent;
+    border: none;
+    padding: 5px 15px;
+    background-color: #fff;
+    outline: 0;
+    font-size: 22px;
+    cursor: pointer;
+}
+.ui-autocomplete{ z-index: 9999; display: block;}
+
+/* eye toggle for password */
+.password-box { position: relative; }
+.password-box span.toggle-password {
+	position: absolute;
+	right: 10pt;
+	top: 17pt;
+	cursor: pointer;
+}
+.msg_section{margin:0 auto;display:table;padding-top:100px;padding-bottom:120px;width: 410px;}
+.msg_section h1{font-size: 130px;color: #222;}
+.msg_section p{font-size: 22px;
+    line-height: 1.5;color: #222;    margin-bottom: 35px;
+    margin-top: 20px;}
+.msg_section button{background-color: #22aa9d;
+    border-radius: 15px;color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;height: 60px;
+    font-size: 18px;border:none;width: 165px;cursor:pointer;}
+.msgborder{width: 125px;height:4px;background-color:#22aa9d;}
+.view-btn{float: left;border: none;border-radius: 8px; min-width: 99px}
+
+.schedule_notification_list {
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 15px;
+    word-break: break-all;
+}
+.schedule_notification_list .f-left {
+    float: left;
+}
+.schedule_notification_list .deletediv {
+    width: 40px;
+    padding: 0px !important;
+    float: right;
+}
+.schedule_notification_list .deletebtn {
+    background-color: transparent;
+    border: none;
+    color: #ff0000;
+    font-size: 21px;
+}
+.notifydiv .notificationsend .fa-bell {
+    font-size: 20px;
+    color: #6c9c30;
+}
+.schedule_notification_list .notifydiv .notificationsend {
+    float: right;
+    background-color: transparent;
+    padding: 6px 8px;
+}

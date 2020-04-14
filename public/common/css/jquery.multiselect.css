@@ -1,0 +1,204 @@
+.ms-options-wrap,
+.ms-options-wrap * {
+    box-sizing: border-box;
+}
+
+.ms-options-wrap > button:focus,
+.ms-options-wrap > button {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    padding: 5px 20px 5px 5px;
+    margin-top: 1px;
+    font-size: 13px;
+    color: #aaa;
+    outline-offset: -2px;
+    white-space: nowrap;
+}
+
+.ms-options-wrap > button > span {
+    display: inline-block;
+}
+
+.ms-options-wrap > button[disabled] {
+    background-color: #e5e9ed;
+    color: #808080;
+    opacity: 0.6;
+}
+
+.ms-options-wrap > button:after {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 0;
+    border: 6px solid rgba(0, 0, 0, 0);
+    border-top-color: #999;
+    margin-top: -3px;
+}
+
+.ms-options-wrap.ms-has-selections > button {
+    color: #333;
+}
+
+.ms-options-wrap > .ms-options {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    background: white;
+    z-index: 2000;
+    border: 1px solid #aaa;
+    overflow: auto;
+    visibility: hidden;
+}
+
+.ms-options-wrap.ms-active > .ms-options {
+    visibility: visible
+}
+
+.ms-options-wrap > .ms-options > .ms-search input {
+    width: 100%;
+    padding: 4px 5px;
+    border: none;
+    border-bottom: 1px groove;
+    outline: none;
+}
+
+.ms-options-wrap > .ms-options .ms-selectall {
+    display: inline-block;
+    font-size: .9em;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+.ms-options-wrap > .ms-options .ms-selectall:hover {
+    text-decoration: underline;
+}
+
+.ms-options-wrap > .ms-options > .ms-selectall.global {
+    margin: 4px 5px;
+}
+
+.ms-options-wrap > .ms-options > ul,
+.ms-options-wrap > .ms-options > ul > li.optgroup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ms-options-wrap > .ms-options > ul li.ms-hidden {
+    display: none;
+}
+
+.ms-options-wrap > .ms-options > ul > li.optgroup {
+    padding: 5px;
+}
+.ms-options-wrap > .ms-options > ul > li.optgroup + li.optgroup {
+    border-top: 1px solid #aaa;
+}
+
+.ms-options-wrap > .ms-options > ul > li.optgroup .label {
+    display: block;
+    padding: 5px 0 0 0;
+    font-weight: bold;
+}
+
+.ms-options-wrap > .ms-options > ul label {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 4px 4px 4px 20px;
+    margin: 1px 0;
+    border: 1px dotted transparent;
+}
+.ms-options-wrap > .ms-options.checkbox-autofit > ul label,
+.ms-options-wrap > .ms-options.hide-checkbox > ul label {
+    padding: 4px;
+}
+
+.ms-options-wrap > .ms-options > ul label.focused,
+.ms-options-wrap > .ms-options > ul label:hover {
+    background-color: #efefef;
+    border-color: #999;
+}
+
+.ms-options-wrap > .ms-options > ul li.selected label {
+    background-color: #efefef;
+    border-color: transparent;
+}
+
+.ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: 4px;
+    top: 7px;
+}
+
+.ms-options-wrap > .ms-options.hide-checkbox > ul input[type="checkbox"] {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+/*multiselect checkbox*/
+.multiselect_checkbox #ms-list-1{margin-bottom: 1.5rem;}
+.multiselect_checkbox button{border: 3px solid #7f7f7f !important;height: 60px;color: #262626 !important;
+font-size: 19px !important;border-radius: 5px !important;font-family: 'Karla', sans-serif;background-position: right 10px bottom 19px !important;background-repeat: no-repeat !important;background: #ffffff url('../images/arrow-black.png');-webkit-appearance: none;-moz-appearance: none;appearance: none;padding: .375rem .75rem !important;}
+.multiselect_checkbox .ms-options-wrap > button::after{display:none;}
+.multiselect_checkbox .ms-options-wrap > .ms-options{max-height: 245px !important;width: 41%;margin-left: 52px;
+margin-right: 28px;}
+.multiselect_checkbox .ms-options-wrap > .ms-options > .ms-selectall.global{background-color: #28b3b6;
+border: none;
+color: #fff;
+border-radius: 3px;
+padding: 6px 15px;
+font-size: 20px;
+margin-left: 18px;}
+.multiselect_checkbox .ms-options-wrap > .ms-options > ul{padding-left: 35px;}
+.multiselect_checkbox .ms-options-wrap > .ms-options > ul label{padding: 4px 4px 4px 35px;}
+.multiselect_checkbox .popupcheck{cursor: pointer;-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;color: #000000;
+font-size: 19px;
+font-weight: normal;}
+.multiselect_checkbox .popupcheck input{opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;}
+.multiselect_checkbox .checkmark{position: absolute;
+top: 8px;
+left: 0;
+height: 25px;
+width: 25px;
+background-color: #fff;
+border: 3px solid #bfbfbf;
+border-radius: 5px;}
+.multiselect_checkbox .popupcheck input:checked ~ .checkmark{background-color: #22aa9d;}
+.multiselect_checkbox .checkmark::after{content: "";
+position: absolute;
+display: none;}
+.multiselect_checkbox .popupcheck .checkmark::after{left: 8px;
+top: 4px;
+width: 5px;
+height: 10px;
+border: solid white;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+border-width: 0 3px 3px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);}
+.multiselect_checkbox .popupcheck input:checked ~ .checkmark::after{display:block;}
+.modal-body .multiselect_checkbox .ms-options-wrap > .ms-options{width: 96%;
+margin-left: 15px;
+margin-right: 15px;}
+.modal-body .multiselect_checkbox button{border: 2px solid #bfbfbf !important;border-radius: 10px !important;}
