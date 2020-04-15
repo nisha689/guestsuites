@@ -1012,9 +1012,7 @@ width: 204px;}
   /*.btb-header .div_newdropdownmenu{top: -42px;}*/
   .btb-header{padding-left: 0px;padding-right: 0px;}
   .btb-header .header_login .navbar-brand{width: 165px !important;}
-  .btb-header .div_newdropdownmenu{top: 22px;}
-
-
+  .btb-header .div_newdropdownmenu{top: 10px;}
 }
 .customer-remove-dialog .ui-dialog-titlebar{
   background: none;
