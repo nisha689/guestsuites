@@ -12,6 +12,7 @@ use App\Classes\Helpers\SearchHelper;
 use Illuminate\Support\Facades\Redirect;
 use App\Classes\Helpers\Roles\Helper as HelperRoles;
 use App\Classes\Helpers\Helper as HelperMain;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -64,7 +65,27 @@ class IndexController extends Controller
                                                               'end_date'       => $endDate,] );
 
         $paging = $this->transactionObj->preparePagination( $totalRecordCount, $paginationBasePath, $searchHelper );
-		
+		if( isset( $data['export'] ) ){
+			$searchHelper = new SearchHelper( $page = -1, $perPage = -1, $selectColumns = ['*'], $filter, $sortOrder = [$sortedBy => $sortedOrder] );
+			$transactionsList = $this->transactionObj->getList( $searchHelper );
+			$filename = "transactions.csv";
+			$fp = fopen('php://output', 'w');
+			header('Content-type: application/csv');
+			header('Content-Disposition: attachment; filename='.$filename);
+			$header = array('Order date','Payee Name', 'Payee Emal','Amount','Plan','Status');
+			fputcsv($fp, $header);
+			foreach( $transactionsList as $transactionKey => $transaction ) {
+				$row	=	array();
+				$row[]	=	\DateFacades::dateFormat($transaction->created_at,'format-3').' '.\DateFacades::dateFormat($transaction->created_at,'time-format-1');
+				$row[]	=	$transaction->user->name;
+				$row[]	=	$transaction->user->email;
+				$row[]	=	$transaction->user->amount;
+				$row[]	=	$transaction->plan->plan_name;
+				$row[]	=	$transaction->status_string;
+				fputcsv($fp, $row);
+			}
+			exit();
+		}
         return view( 'admin.transaction.index', compact( 'sortedBy', 'sortedOrder', 'recordStart', 'paging', 'totalRecordCount', 'startDate', 'endDate', 'transactions', 'name', 'email', 'paymentMethod','status','perPage' ) );
     }
 

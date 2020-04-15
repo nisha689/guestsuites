@@ -11,23 +11,21 @@
                     <div class="col-lg-12 col-md-12 pb-5">
                         <h1 class="admin_bigheading mb-5">Transaction (#{{ $transaction->id }})</h1>
                         <div class="row mt-5">
-                            <div class="col-lg-6 brd-lg-right pb-5 tra_title">
-                                <h2 class="red text-left mb-4">Payee</h2>
-                                <div class="payee-details">
-                                    @if ( !empty($payForUser->photo) &&  Common::isFileExists($payForUser->photo) )
-                                        <img src="{{ url($payForUser->photo) }}" alt="">
-                                    @else
-                                        <img src="{{ url('images/profile-default.png') }}" alt="">
-                                    @endif
-                                    <div>
-                                        <h3>{{ $payForUser->name }}</h3>
-                                        <p>
-                                            <a href="mailto:{{ $payForUser->email }}">{{ $payForUser->email }}</a>
-                                            <br>
-                                            {{ Common::getPhoneFormat($payForUser->phone) }}
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="col-lg-6 brd-lg-right pb-5 profile_border">
+                                <h2 class="text-center mb-4 blackcolor">Payee</h2>
+								<div class="row">
+									<div class="col-lg-9 user-dt">
+										<h3>{{ $payForUser->name }}</h3>                                
+										<a href="mailto:{{ $payForUser->email }}">{{ $payForUser->email }}</a>
+									</div>
+									<div class="col-lg-3 user-dt-img">
+										@if ( !empty($payForUser->photo) &&  Common::isFileExists($payForUser->photo) )
+											<img src="{{ url($payForUser->photo) }}" alt="">
+										@else
+											<img src="{{ url('images/profile-default.png') }}" alt="">
+										@endif
+									</div>
+								</div>                                
                             </div>
                             <div class="col-lg-5 pl-sm-4 pb-5 tra_title">
                                 <h2 class="red text-center mb-4">Payment details</h2>

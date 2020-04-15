@@ -24,8 +24,8 @@ body {
   a:hover{text-decoration:none;}
 .page-wrap{padding: 40px 30px;border-radius: 40px;background-color: #fff;}
 .bx-shadow {
-    -webkit-box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.5);
 }
 .admin_bigheading{font-size:38px;}
 
@@ -251,7 +251,7 @@ transition: background 200ms ease-in;font-family: 'Poppins', Karla, sans-serif;}
 /*.social_icon{margin-top: 30px;}*/
 
 /*setup1*/
-.main_section{padding-left:100px;padding-right:100px;padding-bottom: 40px;padding-top: 40px;}
+.main_section{padding-left:100px;padding-right:100px;padding-bottom: 40px;}
 .setup1_banner{display: inline-flex;padding: 38px 20px;}
 .setup1_banner .banner_title{width: 50%;top: 195px;padding: 0px 52px;position:relative;}
 .setup1_banner .banner_title h4{font-weight:500;font-family: 'Karla', sans-serif;font-size: 28px;}
@@ -1075,4 +1075,7 @@ td b{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.payment-details p {
+    font-size: 19px;
 }

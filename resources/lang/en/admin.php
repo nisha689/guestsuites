@@ -306,4 +306,5 @@ return [
 	'qa_are_you_sure_reactive_school' => 'Are you sure you want to reactivate this school?',
     'qa_are_you_sure_delete_notification' => 'Are you sure you want to delete this notification?',
     'qa_school_not_login_in_app' => 'School admin have to login in app at least once.',
+	'qa_export' => 'Export',
     ];

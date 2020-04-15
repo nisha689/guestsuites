@@ -45,10 +45,12 @@
                         <div class="col-md-4  col-lg-3">
                             {!! Form::text('end_date', $endDate, ['id' =>'end_date', 'class' => 'form-control date-field mb-3', 'placeholder' => 'To date','autocomplete' => 'Off', 'data-toggle'=>'datepicker']) !!}
                         </div>
-									
-                        <div class="col-md-3 col-lg-2 offset-lg-4 offset-md-3">
-                            {!! Form::Submit(trans('admin.qa_search'), ['class' => 'btn btn_green resetbtn']) !!}
-                        </div>
+						<div class="col-md-3 col-lg-2 offset-lg-2 offset-md-2">
+						 {!! Form::Submit(trans('admin.qa_export'), ['class' => 'btn btn_green resetbtn', 'name'=>'export']) !!}
+						 </div>	
+                        <div class="col-md-3 col-lg-2 mt-md-0 mt-3">
+                            {!! Form::Submit(trans('admin.qa_search'), ['class' => 'btn btn_green resetbtn']) !!}                           
+                        </div>						
                         {!! Form::close() !!}
 
                         <div class="table-responsive mt-5">
