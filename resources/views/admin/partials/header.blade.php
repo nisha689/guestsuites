@@ -23,6 +23,7 @@
                 <div class="dropdown-menu" aria-labelledby="account-btn">
                     <a class="dropdown-item" href="{{ url('admin/home') }}">Dash Home</a>
                     <a class="dropdown-item" href="{{ url('admin/services') }}">Services</a>
+                    <a class="dropdown-item" href="{{ url('admin/customers') }}">Customers</a>
                     <a class="dropdown-item" href="{{ url('admin/discounts') }}">Discounts</a>
                     <a class="dropdown-item" href="{{ url('admin/businesses') }}">Businesses</a>
                     <a class="dropdown-item" href="{{ url('admin/email-templates') }}">Email Templates</a>
