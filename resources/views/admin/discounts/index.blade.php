@@ -46,7 +46,6 @@
                                     <th class="updownicon"
                                         onclick="sortWithSearch('code');">Code
                                         {!!  $sortedBy =='code' ? $sorting : $sortDefault  !!}</th>
-                                    <th>Type</th>
                                     <th>Amount</th>
                                     <th>Percent</th>
                                     <th>Validity</th>
@@ -59,7 +58,6 @@
                                         <tr>
                                             <td class="data-id"><span>{{ ++$recordStart  }}</span></td>
                                             <td><b>{{ $discount->code  }}</b></td>
-                                            <td><b>{{ $discount->discounts_type  }}</b></td>
                                             <td>{{ ($discount->fixed_amount > 0) ? "$".$discount->fixed_amount : "-" }}</td>
                                             <td>{{ ($discount->percent > 0) ? $discount->percent."%" : "-" }}</td>
                                             <td>
