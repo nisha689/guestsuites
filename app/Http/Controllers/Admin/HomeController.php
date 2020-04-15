@@ -11,10 +11,12 @@ use App\Classes\Helpers\Roles\Helper as HelperRoles;
 use App\Classes\Common\Common;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Classes\Models\Service\Service;
 
 class HomeController extends Controller
 {
     protected $userObj;
+    protected $serviceObj;
     protected $_helper;
     protected $_helperRoles;
     protected $_searchHelper;
@@ -23,51 +25,34 @@ class HomeController extends Controller
 
         $this->userObj = $userModel;
         $this->_helper = new Helper();
-        $this->_helperRoles = new HelperRoles();
+        $this->_helperRoles = new HelperRoles();  
+		$this->serviceObj = new Service();		
     }
 
     public function index(Request $request){
 
         $loginUser = Auth::guard('admin')->user();
         
-        /* School */
-        /*$schoolRoleId = $this->_helperRoles->getSchoolRoleId();
-        $filter = ['role_id'     => $schoolRoleId];
+        /* Business */
+        $businessesRoleId = $this->_helperRoles->getBusinessRoleId();
+        $filter = ['role_id'     => $businessesRoleId];
         $searchHelper = new SearchHelper( -1, -1, $selectColumns = ['*'], $filter );
-        $totalSchool = $this->userObj->getListTotalCount($searchHelper);*/
+        $totalBusinesses = $this->userObj->getListTotalCount($searchHelper);
 
-        /* Student */
-        /*$studentRoleId = $this->_helperRoles->getStudentRoleId();
-        $filter = ['role_id'     => $studentRoleId];
+        /* Customers */
+        $customerRoleId = $this->_helperRoles->getCustomeRoleId();
+        $filter = ['role_id'     => $customerRoleId];
         $searchHelper = new SearchHelper( -1, -1, $selectColumns = ['*'], $filter );
-        $totalStudent = $this->userObj->getListTotalCount($searchHelper);*/
+        $totalCustomers = $this->userObj->getListTotalCount($searchHelper);
 
-        /* Teacher */
-        /*$teacherRoleId = $this->_helperRoles->getTeacherRoleId();
-        $filter = ['role_id'     => $teacherRoleId];
-        $searchHelper = new SearchHelper( -1, -1, $selectColumns = ['*'], $filter );
-        $totalTeacher = $this->userObj->getListTotalCount($searchHelper);*/
-
-        /* Parent */
-        /*$parentRoleId = $this->_helperRoles->getParentRoleId();
-        $filter = ['role_id'     => $parentRoleId];
-        $searchHelper = new SearchHelper( -1, -1, $selectColumns = ['*'], $filter );
-        $totalParent = $this->userObj->getListTotalCount($searchHelper);*/
+		/* Recent Customers */
+		$searchHelper = new SearchHelper( -1, 4, $selectColumns = ['*'], $filter, $sortOrder = ['created_at' => 'DESC'] );
+        $recentCustomers = $this->userObj->getList( $searchHelper );
 		
-        /* Recent School */
-        /*$schoolRoleId = $this->_helperRoles->getschoolRoleId();
-        $filter = ['role_id'     => $schoolRoleId];
-        $schoolSearchHelper = new SearchHelper( $page =0 , $perPage =4, $selectColumns = ['*'], $filter, $sortOrder = ['updated_at' => 'DESC'] );
-        $recentSchools = $this->userObj->getList($schoolSearchHelper);*/
-
-        /* Event */
-        /*$searchHelper = new SearchHelper( -1, -1  );
-        $totalEvent = $this->eventsObj->getListTotalCount($searchHelper);*/
-
-        /* Club */
-        /*$searchHelper = new SearchHelper( -1, -1  );
-        $totalClub = $this->clubObj->getListTotalCount($searchHelper);*/
-		$totalSchool = $totalTeacher = $totalParent =  $totalStudent = $totalClub = $totalEvent = 100;
-        return view('admin.home', compact('loginUser','totalSchool','totalTeacher','totalParent','totalStudent','totalClub','totalEvent') );
+        /* Services */        
+        $searchHelper = new SearchHelper( -1, -1, $selectColumns = ['*'], $filter );
+        $totalServices = $this->serviceObj->getListTotalCount($searchHelper);
+		
+        return view('admin.home', compact('loginUser','totalBusinesses','totalCustomers','recentCustomers','totalServices') );
     }
 }
