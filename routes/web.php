@@ -151,9 +151,23 @@ Route::group( ['middleware' => ['admin'],
     Route::delete( 'service/delete', ['uses' => 'Service\IndexController@delete',
                                    'as'   => 'service.delete'] );
 
-    /* Grade End */
+    /* Services End */
 
+    /* Discounts Start */
+    Route::get( 'discounts', ['uses' => 'Discount\IndexController@index',
+                                        'as'   => 'discounts'] );
 
+    Route::post( 'discount/get_data', ['uses' => 'Discount\IndexController@getDataForEditModel',
+                                     'as'   => 'discount.getdata'] );
+
+    Route::post( 'discount/ajax_save', ['uses' => 'Discount\IndexController@saveAjax',
+                                     'as'   => 'discount.save_ajax'] );
+
+    Route::delete( 'discount/delete', ['uses' => 'Discount\IndexController@delete',
+                                   'as'   => 'discount.delete'] );
+
+    /* Discounts End */
+    
 });
 /* Admin region end */
 

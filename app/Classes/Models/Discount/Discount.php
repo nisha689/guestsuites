@@ -29,6 +29,11 @@ class Discount extends BaseModel
         $this->_helper = new Helper();
     }
 
+    public function setValidityDateAttribute( $value )
+    {
+        $this->attributes['validity_date'] = ! empty( $value ) ? date( "Y-m-d", strtotime( $value ) ) : null;
+    }
+
     public function addDiscountIdFilter( $discountId = 0 )
     {
         if ( ! empty( $discountId ) && $discountId > 0 ) {
@@ -48,13 +53,13 @@ class Discount extends BaseModel
         return $return;
     }
 
-    public function getDropDown( $prepend = '', $prependKey = 0, $status = -1 )
+    public function getDropDown( $prepend = '', $prependKey = "" )
     {
         $return = $this->setSelect()
                        ->addStatusFilter( $status )
-                       ->addSortOrder( ['plan_name' => 'asc'] )
+                       ->addSortOrder( ['code' => 'asc'] )
                        ->get()
-                       ->pluck( 'plan_name', 'discounts_id' );
+                       ->pluck( 'code', 'discounts_id' );
 
         if ( ! empty( $prepend ) ) {
             $return->prepend( $prepend, $prependKey );
@@ -62,29 +67,14 @@ class Discount extends BaseModel
         return $return;
     }
 
-    public function getStatusStringAttribute()
+    public function addCodeLikeFilter( $code = '' )
     {
-        return $this->status == 1 ? 'Active' : 'Inactive';
-    }
-
-    public function addNameLikeFilter( $name = '' )
-    {
-        if ( ! empty( trim( $name ) ) ) {
+        if ( ! empty( trim( $code ) ) ) {
             $tableName = $this->getTableName();
-            $this->queryBuilder->where( $tableName . '.name', 'like', '%' . $name . '%' );
+            $this->queryBuilder->where( $tableName . '.code', 'like', '%' . $code . '%' );
         }
         return $this;
     }
-
-    public function addStatusFilter( $status = -1 )
-    {
-        if ( $status != '-1' && $status != -1 ) {
-            $tableName = $this->getTableName();
-            $this->queryBuilder->where( $tableName . '.status', '=', $status );
-        }
-        return $this;
-    }
-
 
     public function getList( $searchHelper )
     {
@@ -93,13 +83,11 @@ class Discount extends BaseModel
         $perPage = ($searchHelper->_perPage == 0) ? $this->_helper->getConfigPerPageRecord() : $searchHelper->_perPage;
 
         $search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';
-        $name = ( ! empty( $searchHelper->_filter['name'] )) ? $searchHelper->_filter['name'] : '';
-        $status = isset( $searchHelper->_filter['status'] ) ? $searchHelper->_filter['status'] : -1;
-
+        $code = ( ! empty( $searchHelper->_filter['code'] )) ? $searchHelper->_filter['code'] : '';
+        
         $list = $this->setSelect()
                      ->addSearch( $search )
-                     ->addStatusFilter( $status )
-                     ->addNameLikeFilter( $name )
+                     ->addCodeLikeFilter( $code )
                      ->addSortOrder( $searchHelper->_sortOrder )
                      ->addPaging( $searchHelper->_page, $perPage )
                      ->addGroupBy( $searchHelper->_groupBy )
@@ -113,13 +101,11 @@ class Discount extends BaseModel
         $this->reset();
 
         $search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';
-        $name = ( ! empty( $searchHelper->_filter['name'] )) ? $searchHelper->_filter['name'] : '';
-        $status = isset( $searchHelper->_filter['status'] ) ? $searchHelper->_filter['status'] : -1;
-
+        $code = ( ! empty( $searchHelper->_filter['code'] )) ? $searchHelper->_filter['code'] : '';
+        
         $count = $this->setSelect()
                       ->addSearch( $search )
-                      ->addStatusFilter( $status )
-                      ->addNameLikeFilter( $name )
+                      ->addCodeLikeFilter( $code )
                       ->addSortOrder( $searchHelper->_sortOrder )
                       ->addGroupBy( $searchHelper->_groupBy )
                       ->get()
@@ -130,20 +116,31 @@ class Discount extends BaseModel
 
     public function saveRecord( $data )
     {
+        $tableName = $this->getTableName();
         $discountId = 0;
+        $rules = ['code'      => ['required','unique:' . $tableName],
+                  'validity_date'      => ['required'],
+                  'percent'      => ['required_without:fixed_amount'],
+                  'fixed_amount'      => ['required_without:percent']
+                ];
+
         if ( ! empty( $data['discounts_id'] ) && $data['discounts_id'] > 0 ) {
             $discountId = $data['discounts_id'];
+            $rules['code'] = 'required|unique:' . $tableName . ',code,' . $discountId . ',discounts_id';
         }
-        $tableName = $this->getTableName();
-        $rules = ['plan_name' => ['required',
-                             'unique:' . $tableName . ',plan_name,' . $discountId . ',discounts_id'],];
-
+                
         $validationResult = $this->validateData( $rules, $data );
 
         if ( $validationResult['success'] == false ) {
             $result['success'] = false;
             $result['message'] = $validationResult['message'];
             return $result;
+        }
+
+        if(!empty($data['fixed_amount']) && $data['fixed_amount'] > 0){
+          $data['discounts_type'] = 2;
+        }else{
+          $data['discounts_type'] = 1;
         }
 
         if ( $discountId > 0 ) {
@@ -157,7 +154,7 @@ class Discount extends BaseModel
             $result['discounts_id'] = $plan->discounts_id;
         }
         $result['success'] = true;
-        $result['message'] = "Plan saved successfully.";
+        $result['message'] = "Discount saved successfully.";
         return $result;
     }
 }

@@ -35,7 +35,7 @@
                             <div class="totals-box blue">
                                 <span>TOTAL CUSTOMERS</span>
                                 <p>{{ $totalCustomers }}
-                                    <small>customers</small>
+                                    <small>Customers</small>
                                 </p>
                             </div>
                         </a>

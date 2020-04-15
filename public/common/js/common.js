@@ -480,9 +480,13 @@ jQuery(document).ready(function () {
         });
     }
 
-	$(document).on("keyup",'.digitonly', function(){
-	  this.value = this.value.replace(/\D/g,'');
-	});
+    jQuery('.digitonly').on('input propertychange paste', function() {
+        this.value = this.value.replace(/\D/g,'');
+    });
+
+     jQuery('.price-validation').on('input propertychange paste', function() {
+        this.value = this.value.replace(/[^0-9\.]/g,'');
+    });
 
     /* word Count Validation */
     if( jQuery('[data-count-validation="word"]').length > 0 ) {
