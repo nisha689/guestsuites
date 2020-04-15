@@ -22,6 +22,7 @@
                     <i class="fas fa-bars"></i></button>
                 <div class="dropdown-menu" aria-labelledby="account-btn">
                     <a class="dropdown-item" href="{{ url('admin/home') }}">Dash Home</a>
+                    <a class="dropdown-item" href="{{ url('admin/services') }}">Services</a>
                     <a class="dropdown-item" href="{{ url('admin/businesses') }}">Businesses</a>
                     <a class="dropdown-item" href="{{ url('admin/email-templates') }}">Email Templates</a>
                     <a class="dropdown-item" href="{{ url('admin/transactions') }}">Transactions</a>

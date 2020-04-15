@@ -138,6 +138,21 @@ Route::group( ['middleware' => ['admin'],
 
     /* Transaction Start */
 
+    /* Services Start */
+    Route::get( 'services', ['uses' => 'Service\IndexController@index',
+                                        'as'   => 'services'] );
+
+    Route::post( 'service/get_data', ['uses' => 'Service\IndexController@getDataForEditModel',
+                                     'as'   => 'service.getdata'] );
+
+    Route::post( 'service/ajax_save', ['uses' => 'Service\IndexController@saveAjax',
+                                     'as'   => 'service.save_ajax'] );
+
+    Route::delete( 'service/delete', ['uses' => 'Service\IndexController@delete',
+                                   'as'   => 'service.delete'] );
+
+    /* Grade End */
+
 
 });
 /* Admin region end */
