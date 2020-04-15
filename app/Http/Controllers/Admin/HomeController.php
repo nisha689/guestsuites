@@ -67,7 +67,7 @@ class HomeController extends Controller
         /* Club */
         /*$searchHelper = new SearchHelper( -1, -1  );
         $totalClub = $this->clubObj->getListTotalCount($searchHelper);*/
-
-        return view('admin.home', compact('loginUser') );
+		$totalSchool = $totalTeacher = $totalParent =  $totalStudent = $totalClub = $totalEvent = 100;
+        return view('admin.home', compact('loginUser','totalSchool','totalTeacher','totalParent','totalStudent','totalClub','totalEvent') );
     }
 }
