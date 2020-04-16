@@ -1,0 +1,211 @@
+http://optimabranding.net/5/guest_suites
+======================================================================================
+
+* Genrate Token
+POST: http://optimabranding.net/5/guest_suites/api/genrate_token.php
+---------
+RESPONSE :
+{
+    "response_code": "1",
+    "response_data": {
+        "token": "MTU4NTcxOTQyMA=="
+    }
+}
+
+======================================================================================
+* Login
+
+POST: http://optimabranding.net/5/guest_suites/api/login.php 
+
+BODY:
+---------------------
+email
+password
+fcm_token
+device_type (ios OR android)
+token
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "user_id": "2",
+        "first_name": "Jamie",
+        "last_name": "Bruck",
+        "company_name": "Jamie W Bruck",
+        "email": "cwiser240@gmail.com",
+        "phone": "986523565",
+        "gender": "1",
+        "address": "Address",
+        "country_id": "1",
+        "state_id": "2",
+        "city_id": "32",
+        "zipcode": "654873",
+        "role_id": "2",
+        "last_login_date": "2020-04-16 10:20:17",
+        "business_service_id": "1",
+        "plan_id": "2",
+        "status": "1",
+        "photo": "http://optimabranding.net/5/guest_suites/images/user/profile1_158676942555496722.jpg"
+    },
+    "response_success": "Login successful."
+}
+
+
+======================================================================================
+* Logout
+
+POST: http://optimabranding.net/5/guest_suites/api/logout.php
+
+BODY:
+---------------------
+token
+user_id
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "msg": "success",       
+    },
+    "response_success": "Logout successful."
+}
+
+
+======================================================================================
+* Recover Password
+
+POST: http://optimabranding.net/5/guest_suites/api/recover_password.php
+
+BODY:
+---------------------
+token
+email
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "user_id": "4",       
+    },
+    "response_success": "Password reset instructions have been sent to your email."
+}
+
+======================================================================================
+* Update Password
+
+POST: http://optimabranding.net/5/guest_suites/api/update_password.php
+
+BODY:
+---------------------
+token
+user_id
+password
+confirm_password
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "user_id": "4"
+    },
+    "response_success": "Password has been updated successfully."
+}
+
+======================================================================================
+* Get Profile Data
+
+POST: http://optimabranding.net/5/guest_suites/api/get_profile_data.php
+
+BODY:
+---------------------
+token
+user_id	
+
+RESPONSE:
+---------------------
+{
+    "response_data": {
+        "user_id": "2",
+        "first_name": "Jamie",
+        "last_name": "Bruck",
+        "company_name": "Jamie W Bruck",
+        "email": "cwiser240@gmail.com",
+        "phone": "986523565",
+        "gender": "1",
+        "address": "Address",
+        "country_id": "1",
+        "state_id": "2",
+        "city_id": "32",
+        "zipcode": "654873",
+        "role_id": "2",
+        "last_login_date": "2020-04-16 10:24:52",
+        "business_service_id": "1",
+        "plan_id": "2",
+        "status": "1",
+        "photo": "http://optimabranding.net/5/guest_suites/images/user/profile1_158676942555496722.jpg"
+    },
+    "response_code": "1",
+    "response_error": "",
+    "response_success": "success"
+}
+
+======================================================================================
+* Update Profile
+
+POST: http://optimabranding.net/5/guest_suites/api/update_profile.php
+
+BODY:
+---------------------
+token
+first_name
+last_name
+email
+password
+confirm_password
+role_id
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "user_id": "4",       
+    },
+    "response_success": "You have signed up successfully."
+}
+
+======================================================================================
+* Register
+
+POST: http://optimabranding.net/5/guest_suites/api/register.php
+
+BODY:
+---------------------
+token
+first_name
+last_name
+email
+password
+confirm_password
+role_id
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "user_id": "4",       
+    },
+    "response_success": "You have signed up successfully."
+}

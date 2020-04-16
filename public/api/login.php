@@ -23,16 +23,12 @@ if($check_token[0]=='1'){
 
 	$device_type = mysqlRealescapestring($conn,$_POST['device_type']);
 
-	$social_type = !empty($_POST['social_type']) ? $_POST['social_type'] : ""; 
-			  
-
-	$check_qry_var = "SELECT user_id,email,password,status,photo,social_type,first_name,last_name,role_id
+	
+	$check_qry_var = "SELECT *
 
 					  FROM ".DB_PREFIX."users 
 
-					  WHERE role_id IN(2,3) AND email='".$email."'";
-
-		
+					  WHERE role_id = 2 AND email='".$email."'";
 
 	$check_qry = mysqlQuery($conn,$check_qry_var);
 
@@ -42,50 +38,24 @@ if($check_token[0]=='1'){
 
 	$check_role =  $get_data['role_id'];
 
-	$social_type_db = $get_data['social_type'];
-
-		
-
 	// check password
 
 	$userEnterPassword = $password;
 
 	$laravelDBPassword = $get_data['password'];
 
-	
-
-	
-
 	$check_password = "correct";
 
-	$check_social_type = 1;
-
-	if($social_type > 0){
-
 		
+	if(password_verify($userEnterPassword,$laravelDBPassword)){
 
-		if($social_type != $social_type_db){
-
-			$check_social_type = 0;
-
-		}	
+    	$check_password = "correct";
 
 	}else{
 
+		$check_password = "not_correct";
 
-
-		if(password_verify($userEnterPassword,$laravelDBPassword)){
-
-	    	$check_password = "correct";
-
-		}else{
-
-			$check_password = "not_correct";
-
-		}	
-
-	}
-
+	}	
 	
 
 	if($email=='' || $password==''){
@@ -102,7 +72,6 @@ if($check_token[0]=='1'){
 
 	}else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-	
 
 		$response_data['response_code'] = '0';
 
@@ -112,20 +81,8 @@ if($check_token[0]=='1'){
 
 		$response_data['response_success'] = '';
 
+
 	
-
-	}else if($check_social_type != 1){
-
-		$response_data['response_code'] = '0';
-
-		$response_data['response_error'] = 'Invalid social login type';
-
-		$response_data['response_data'] = array();
-
-		$response_data['response_success'] = '';
-
-		
-
 	}else if($check_row=='0' || $check_password=='not_correct'){
 
 		$response_data['response_code'] = '0';
@@ -202,29 +159,29 @@ if($check_token[0]=='1'){
 
 		$update_id = upd_rec(DB_PREFIX."users",$update_login_data,"user_id='".$get_data['user_id']."'");
 
-		//SendHTMLMail("cwiser249@gmail.com","Yoplaits Login",$fcm_token."==>".$device_type,false,FROMMAIL);
-
 		$user_data['user_id'] = $get_data['user_id'];
-
 		$user_data['first_name'] = $get_data['first_name'];
-
 		$user_data['last_name'] = $get_data['last_name'];
-
+		$user_data['company_name'] = $get_data['company_name'];
+		$user_data['email'] = $get_data['email'];
+		$user_data['phone'] = $get_data['phone'];
+		$user_data['address'] = $get_data['address'];
+		$user_data['country_id'] = $get_data['country_id'];
+		$user_data['state_id'] = $get_data['state_id'];
+		$user_data['city_id'] = $get_data['city_id'];
+		$user_data['zipcode'] = $get_data['zipcode'];
 		$user_data['role_id'] = $get_data['role_id'];
+		$user_data['last_login_date'] = $get_data['last_login_date'];
+		$user_data['business_service_id'] = $get_data['business_service_id'];
+		$user_data['plan_id'] = $get_data['plan_id'];
+		$user_data['status'] = $get_data['status'];
 
-		$user_data['social_type'] = $get_data['social_type'];
-
-		$user_data['photo'] = USER_IMAGE_URL."images/profile-default.png";
-
-		
+		$user_data['photo'] = SITEURL."images/profile-default.png";
 
 		if(!empty($get_data['photo'])){
 
-			$user_data['photo'] = USER_IMAGE_URL."".$get_data['photo'];
-
+			$user_data['photo'] = SITEURL."".$get_data['photo'];
 		}
-
-		
 
 		$response_data['response_code'] = '1';
 

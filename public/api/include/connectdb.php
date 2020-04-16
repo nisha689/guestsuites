@@ -53,11 +53,9 @@ if($total_configuration > 0){
 }
 
 
-/*define("ADMINMAIL", "webzdeveloper272@gmail.com");*/
 define("FROMMAIL", "cwiser904@gmail.com");
-/*define("FROMMAIL", "websposure2017@gmail.com");*/
 define("SITENAME", "Guest Suites");
-define("SITEURL", "http://127.0.0.1/guestsuites/trunk/public/api/");
+define("SITEURL", "http://optimabranding.net/5/guest_suites/");
 define ("EMAIL_TEMPLATE_HEADER_IMAGE_URL",SITEURL."images/emailtop.png");
 define ("EMAIL_TEMPLATE_FOOTER_IMAGE_URL",SITEURL."images/emailbottom.png");
 define ("EMAIL_TEMPLATE_FACEBOOK_IMAGE_URL",SITEURL."images/facebook-icon.png");
@@ -66,9 +64,8 @@ define ("EMAIL_TEMPLATE_FACEBOOK_URL",$config_array['facebook_url']);
 define ("EMAIL_TEMPLATE_TWITTER_URL",$config_array['twitter_url']);
 define("ADMINMAIL", $config_array['admin_email']);
 
-//define("USER_IMAGE_PATH", $_SERVER['DOCUMENT_ROOT'] . '/api/images/user_images/');
 define("USER_IMAGE_PATH", $_SERVER['DOCUMENT_ROOT'] . '/images/user/');
-define("USER_IMAGE_URL", "http://127.0.0.1/guestsuites/trunk/public/images/user/");
+define("USER_IMAGE_URL", "http://optimabranding.net/5/guest_suites/images/user/");
 define("MSG_ATTACHMENT_PATH", $_SERVER['DOCUMENT_ROOT'] . '/images/message_attachment/');
 define("DISCUSSION_ATTACHMENT_PATH", $_SERVER['DOCUMENT_ROOT'] . '/images/discussion_attachment/');
 define("BLANK_VALIDATION_MSG","Please fill in all the required fields in the form above.");

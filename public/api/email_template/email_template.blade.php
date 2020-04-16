@@ -31,7 +31,7 @@
                     <td style=" font-size:14px; text-align:left; line-height:20px; margin-top:5px;">
                         <font face="Arial"
                               style="font-size:14px; line-height:20px; text-align:left; color:#203970; font-weight:bold">
-                            <br><a href="https://www.yoplaits.com"> www.yoplaits.com </a>
+                            <br><a href="https://www.guest-suites.com"> www.guest-suites.com </a>
                         </font>
                     </td>
                 </tr>

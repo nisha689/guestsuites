@@ -13,7 +13,7 @@ if($check_token[0]=='1'){
 	$user_id = trim($_POST['user_id']);
 	$check_user_qry = "SELECT user_id,role_id
 					  FROM ".DB_PREFIX."users 
-					  WHERE role_id IN(2,3) AND user_id='".$user_id."'";
+					  WHERE role_id = 2 AND user_id='".$user_id."'";
 
 	$check_user_res = mysqlQuery($conn,$check_user_qry);
 	$check_user = myasqlNumRow($check_user_res);
