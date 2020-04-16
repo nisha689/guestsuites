@@ -299,3 +299,128 @@ RESPONSE:
     "response_error": "",
     "response_success": "success"
 }
+
+======================================================================================
+* Business Services
+
+POST: http://optimabranding.net/5/guest_suites/api/business_services.php
+
+BODY:
+---------------------
+token
+
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "business_service": [
+            {
+                "business_service_id": "4",
+                "business_service_name": "Eye lashes"
+            },
+            {
+                "business_service_id": "2",
+                "business_service_name": "Facial"
+            },
+            {
+                "business_service_id": "3",
+                "business_service_name": "Hair from"
+            },
+            {
+                "business_service_id": "5",
+                "business_service_name": "Hair removal"
+            },
+            {
+                "business_service_id": "1",
+                "business_service_name": "Massage"
+            }
+        ]
+    },
+    "response_success": ""
+}
+
+======================================================================================
+* Business Customer
+
+POST: http://optimabranding.net/5/guest_suites/api/business_customer.php
+
+BODY:
+---------------------
+token
+business_id
+name
+email
+phone
+
+
+RESPONSE:
+---------------------
+{
+    "response_data": {
+        "user": [
+            {
+                "user_id": "3",
+                "first_name": "Patty",
+                "last_name": "Patty",
+                "company_name": "",
+                "email": "jayce2008@hotmail.com",
+                "phone": "9876543210",
+                "address": null,
+                "country_id": "1",
+                "state_id": "1",
+                "city_id": "1",
+                "zipcode": null,
+                "role_id": "3",
+                "last_login_date": "2020-04-10 00:00:00",
+                "business_service_id": null,
+                "plan_id": null,
+                "status": "1",
+                "photo": "http://optimabranding.net/5/guest_suites/images/profile-default.png"
+            },
+            {
+                "user_id": "6",
+                "first_name": "Jerry",
+                "last_name": "Hepworth",
+                "company_name": "Jerry H Hepworth",
+                "email": "jerryhepworth@gmail.com",
+                "phone": "9786543210",
+                "address": "Address",
+                "country_id": "1",
+                "state_id": "1",
+                "city_id": "11",
+                "zipcode": "98754",
+                "role_id": "3",
+                "last_login_date": null,
+                "business_service_id": null,
+                "plan_id": "3",
+                "status": "1",
+                "photo": "http://optimabranding.net/5/guest_suites/http://optimabranding.net/5/guest_suites/images/profile-default.png"
+            },
+            {
+                "user_id": "7",
+                "first_name": "first",
+                "last_name": "last",
+                "company_name": "",
+                "email": "cwiser249@gmail.com",
+                "phone": "9756645689",
+                "address": "address",
+                "country_id": "1",
+                "state_id": "1",
+                "city_id": "1",
+                "zipcode": "65412",
+                "role_id": "3",
+                "last_login_date": null,
+                "business_service_id": null,
+                "plan_id": "3",
+                "status": "1",
+                "photo": "http://optimabranding.net/5/guest_suites/http://optimabranding.net/5/guest_suites/images/profile-default.png"
+            }
+        ]
+    },
+    "response_code": "1",
+    "response_error": "",
+    "response_success": "success"
+}
