@@ -169,9 +169,16 @@ token
 first_name
 last_name
 email
-password
-confirm_password
-role_id
+company_name
+phone
+address
+state_id
+city_id
+country_id
+zipcode
+business_service_id
+phote
+
 
 RESPONSE:
 ---------------------
@@ -179,9 +186,21 @@ RESPONSE:
     "response_code": "1",
     "response_error": "",
     "response_data": {
-        "user_id": "4",       
+        "first_name": "first",
+        "last_name": "last",
+        "company_name": "",
+        "email": "cwiser249@gmail.com",
+        "phone": "9756645689",
+        "address": "address",
+        "state_id": "1",
+        "city_id": "1",
+        "country_id": "1",
+        "ip_address": "127.0.0.1",
+        "zipcode": "65412",
+        "business_service_id": null,
+        "photo": "http://optimabranding.net/5/guest_suites/images/user/profile1_1586857628964632162.jpg"
     },
-    "response_success": "You have signed up successfully."
+    "response_success": "Profile has been updated successfully."
 }
 
 ======================================================================================

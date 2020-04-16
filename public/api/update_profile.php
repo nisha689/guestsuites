@@ -14,15 +14,18 @@ if($check_token[0]=='1'){
 	$user_id = mysqlRealescapestring($conn,$_POST['user_id']);
 	$first_name = mysqlRealescapestring($conn, $_POST['first_name']);
 	$last_name = mysqlRealescapestring($conn, $_POST['last_name']);
+	$company_name = mysqlRealescapestring($conn, $_POST['company_name']);
 	$email = mysqlRealescapestring($conn, $_POST['email']);
 	$phone = mysqlRealescapestring($conn, $_POST['phone']);
 	$address = mysqlRealescapestring($conn, $_POST['address']);
+	$country_id = mysqlRealescapestring($conn, $_POST['country_id']);
 	$state_id = mysqlRealescapestring($conn, $_POST['state_id']);
 	$city_id = mysqlRealescapestring($conn, $_POST['city_id']);
+	$zipcode = mysqlRealescapestring($conn, $_POST['zipcode']);
 	$imgbase64 = $_POST['photo'];
 	
 	// check email is exists or not
-	$check_qry_var = "SELECT email FROM ".DB_PREFIX."users WHERE email='".$email."' AND user_id<>'".$user_id."'";
+	$check_qry_var = "SELECT email FROM ".DB_PREFIX."users WHERE email='".$email."' AND user_id !='".$user_id."'";
 	$check_qry = mysqlQuery($conn, $check_qry_var);
 	$check_duplicate = myasqlNumRow($check_qry);
 	
@@ -31,7 +34,7 @@ if($check_token[0]=='1'){
 	$check_state_res = mysqlQuery($conn,$check_state_qry);
 	$total_check_state_row = myasqlNumRow($check_state_res);
 	
-	if ($user_id == '' || $first_name == '' || $last_name == '' || $email == '' || $phone=='' || $address =='' || $state_id =='' || $city_name =='') {
+	if ($user_id == '' || $first_name == '' || $last_name == '' || $email == '' || $phone=='' || $address =='' || $state_id =='' || $city_id =='') {
 		$response_data['response_code'] = '0';
 		$response_data['response_error'] = BLANK_VALIDATION_MSG;
 		$response_data['response_data'] = array();
@@ -104,18 +107,20 @@ if($check_token[0]=='1'){
 		
 		$user_data['first_name'] = $first_name;
 		$user_data['last_name'] = $last_name;
+		$user_data['company_name'] = $company_name;
 		$user_data['email'] = $email;
 		$user_data['phone'] = $phone;
 		$user_data['address'] = $address;
+		$user_data['country_id'] = $country_id;
 		$user_data['state_id'] = $state_id;
-		$user_data['city_name'] = $city_name;
+		$user_data['state_id'] = $state_id;
+		$user_data['city_id'] = $city_id;
 		$user_data['ip_address'] = $_SERVER['REMOTE_ADDR'];
 		$user_data['updated_at'] = get_current_date_time();
 		
 		$update_id = upd_rec(DB_PREFIX."users", $user_data, "user_id='".$user_id."'");
 		
-		$display_user_data_qry_var = "SELECT first_name,last_name,email,phone,
-									  address,state_id,city_name,photo,ip_address
+		$display_user_data_qry_var = "SELECT *
 									  FROM ".DB_PREFIX."users WHERE user_id='".$user_id."'";
 									  
 		$display_user_data_qry = mysqlQuery($conn,$display_user_data_qry_var);
@@ -123,15 +128,18 @@ if($check_token[0]=='1'){
 		
 		$display_user_data['first_name'] = $display_user_data_row['first_name'];
 		$display_user_data['last_name'] = $display_user_data_row['last_name'];
+		$display_user_data['company_name'] = $display_user_data_row['company_name'];
 		$display_user_data['email'] = $display_user_data_row['email'];
 		$display_user_data['phone'] = $display_user_data_row['phone'];
 		$display_user_data['address'] = $display_user_data_row['address'];
 		$display_user_data['state_id'] = $state_id;
-		$display_user_data['city_name'] = $city_name;
+		$display_user_data['city_id'] = $city_id;
+		$display_user_data['country_id'] = $country_id;
 		$display_user_data['ip_address'] = $display_user_data_row['ip_address'];
+		$display_user_data['zipcode'] = $display_user_data_row['zipcode'];
+		$display_user_data['business_service_id'] = $display_user_data_row['business_service_id'];
 		$display_user_data['photo'] = $display_user_data_row['photo']!=""?SITEURL.$display_user_data_row['photo']:"";
-		
-		
+				
 		$response_data['response_code'] = '1';
 		$response_data['response_error'] = "";
 		$response_data['response_data'] = $display_user_data;
