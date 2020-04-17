@@ -122,6 +122,21 @@ Route::group( ['middleware' => ['admin'],
 
     /* Customer End */
 
+    /* Customer Booking Service Start */
+
+    Route::get( 'customer-booking-service/{id}', ['uses' => 'CustomerBookingService\IndexController@index',
+                        'as'   => 'customer_booking_service'] );
+
+    Route::get( 'customer-booking-service-details/{id}', ['uses' => 'CustomerBookingService\IndexController@details',
+                                 'as'   => 'customer_booking_service_details'] );
+
+    Route::delete( 'customer-booking-service/delete', ['uses' => 'CustomerBookingService\IndexController@delete',
+                                  'as'   => 'customer_booking_service.delete'] );
+
+    /* Customer Booking Service Start */
+
+
+
     /* Backend Logs Start */
     Route::get( 'backend-logs', ['uses' => 'BackendLog\IndexController@index','as'   => 'backend_logs'] );
 

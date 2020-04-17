@@ -105,6 +105,8 @@
                                                            class="viewbtn contact">Contact</a>
                                                         <a href="{{ url('admin/customer/profile/')}}/{{ Common::getEncryptId($business->user_id) }}"
                                                            class="viewbtn">view</a>
+                                                        <a href="{{ url('admin/customer-booking-service/')}}/{{ Common::getEncryptId($business->user_id) }}"
+                                                           class="viewbtn">Service</a>
                                                         
                                                     </div>
                                                     <div class="right-action">
