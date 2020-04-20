@@ -21,6 +21,10 @@
 <!-- Time Pikcer -->
 <script type="text/javascript" src="{{url('common/js/timepicki.js')}}"></script>
 
+<!-- Chart -->
+<script type="text/javascript" src="{{url('common/js/chart.min.js')}}"></script>
+
+
 <script>
     window.baseURI = "{{ url('/') }}";
     window._token = "{{ csrf_token() }}";

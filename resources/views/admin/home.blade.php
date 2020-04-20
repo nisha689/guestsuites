@@ -21,18 +21,8 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-6">
-                        <a href="{{ url('admin/services') }}">
-                            <div class="totals-box gray">
-                                <span>TOTAL Services</span>
-                                <p>{{ $totalServices }}
-                                    <small>Services</small>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
                         <a href="{{ url('admin/customers') }}">
-                            <div class="totals-box blue">
+                            <div class="totals-box gray">
                                 <span>TOTAL CUSTOMERS</span>
                                 <p>{{ $totalCustomers }}
                                     <small>Customers</small>
@@ -40,12 +30,24 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 d-none">
-                        <a href="{{ url('admin/parents') }}">
+
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <a href="{{ url('admin/transactions') }}">
+                            <div class="totals-box blue">
+                                <span>TOTAL Transaction</span>
+                                <p>${{ $totalTransaction }}
+                                    <small></small>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <a href="javascript:void(0);">
                             <div class="totals-box yellow">
-                                <span>TOTAL PARENTS</span>
-                                <p>0
-                                    <small>parents</small>
+                                <span>TOTAL ORDERS</span>
+                                <p>{{ $totalOrder }}
+                                    <small>orders</small>
                                 </p>
                             </div>
                         </a>
@@ -120,8 +122,99 @@
                             </table>
                         </div>
                     </div>
+                    <div class="col-lg-6 pt-3">
+                        <div class="mt-4 ">
+                                <h2 class="pr-box-heading">Business</h2>
+                            <canvas id="business_chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-3">
+                        <div class="mt-4 ">
+                                <h2 class="pr-box-heading">Customers</h2>
+                            <canvas id="customer_chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-3">
+                        <div class="mt-4 ">
+                                <h2 class="pr-box-heading">Order</h2>
+                            <canvas id="order_chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-3">
+                        <div class="mt-4 ">
+                                <h2 class="pr-box-heading">Transaction</h2>
+                            <canvas id="transaction_chart"></canvas>
+                        </div>
+                    </div>
                 </div>               
             </div>
         </div>
     </div>
+    
+@endsection
+@section('javascript')
+    <script>
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    var today = new Date();
+    var d;
+    var month = [];
+
+    for(var i = 6; i >= 0; i -= 1) {
+        d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+        month.push(monthNames[d.getMonth()]);
+    }
+    /* Business */
+    new Chart(document.getElementById("business_chart"), {
+        type: 'line',
+        data: {
+            labels: month,
+            datasets: [{
+                data: {{ json_encode($businessMap) }},
+                borderColor: "#2d59a9",
+                label: "Business",
+                fill: false
+            }]
+        }
+    });
+    /* Customer */
+    new Chart(document.getElementById("customer_chart"), {
+        type: 'line',
+        data: {
+            labels: month,
+            datasets: [{
+                data: {{ json_encode($customerMap) }},
+                borderColor: "#f9360f",
+                label: "Customer",
+                fill: false
+            }]
+        }
+    });
+    /* Order */
+    new Chart(document.getElementById("order_chart"), {
+        type: 'line',
+        data: {
+            labels: month,
+            datasets: [{
+                data: {{ json_encode($orderMap) }},
+                borderColor: "#038c30",
+                label: "Order",
+                fill: false
+            }]
+        }
+    });
+    /* Transaction */
+    new Chart(document.getElementById("transaction_chart"), {
+        type: 'line',
+        data: {
+            labels: month,
+            datasets: [{
+                data: {{ json_encode($transactionMap,true) }},
+                borderColor: "#7c68dd",
+                label: "transaction",
+                fill: false
+            }]
+        }
+    });
+    </script>
 @endsection

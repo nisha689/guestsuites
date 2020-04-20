@@ -244,6 +244,8 @@ class Transaction extends BaseModel
     public function getListTotalCount( $searchHelper )
     {
         $this->reset();
+        $perPage = ($searchHelper->_perPage == 0) ? $this->_helper->getConfigPerPageRecord() : $searchHelper->_perPage;
+
         $search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';
 
         $name = ( ! empty( $searchHelper->_filter['name'] )) ? $searchHelper->_filter['name'] : '';
@@ -277,9 +279,12 @@ class Transaction extends BaseModel
     {
 
         $this->reset();
-        $perPage = ($searchHelper->_perPage == 0) ? $this->_helper->getConfigPerPageRecord() : $searchHelper->_perPage;
-        $search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';
 
+        $perPage = ($searchHelper->_perPage == 0) ? $this->_helper->getConfigPerPageRecord() : $searchHelper->_perPage;
+        $perPage = ($searchHelper->_perPage == 0) ? $this->_helper->getConfigPerPageRecord() : $searchHelper->_perPage;
+
+        $search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';$search = ( ! empty( $searchHelper->_filter['search'] )) ? $searchHelper->_filter['search'] : '';
+        
         $name = ( ! empty( $searchHelper->_filter['name'] )) ? $searchHelper->_filter['name'] : '';
         $email = ( ! empty( $searchHelper->_filter['email'] )) ? $searchHelper->_filter['email'] : '';
         $status = (isset( $searchHelper->_filter['status'] )) ? $searchHelper->_filter['status'] : -1;
@@ -287,16 +292,19 @@ class Transaction extends BaseModel
         $startDate = ( ! empty( $searchHelper->_filter['created_start_date'] )) ? $searchHelper->_filter['created_start_date'] : '';
         $endDate = ( ! empty( $searchHelper->_filter['created_end_date'] )) ? $searchHelper->_filter['created_end_date'] : '';
         $planId = ( ! empty( $searchHelper->_filter['plan_id'] )) ? $searchHelper->_filter['plan_id'] : 0;
+        $userId = ( ! empty( $searchHelper->_filter['user_id'] )) ? $searchHelper->_filter['user_id'] : 0;
+
         $list = $this->setSelect()
                      ->joinUser()
                      ->addSearch( $search )
                      ->addStatusFilter( $status )
-                     ->addEmailFilter( $email )
-                     ->addNameLikeFilter( $name )
-                     ->addCreatedDateFilter( $startDate, $endDate )
-                     ->addPaymentMethodFilter( $paymentMethod )
-                     ->addPlanIdFilter( $planId )
-                     ->addSortOrder( $searchHelper->_sortOrder )
+                      ->addEmailFilter( $email )
+                      ->addNameLikeFilter( $name )
+                      ->addCreatedDateFilter( $startDate, $endDate )
+                      ->addPaymentMethodFilter( $paymentMethod )
+                      ->addPlanIdFilter( $planId )
+                      ->addUserIdFilter( $userId )
+                      ->addSortOrder( $searchHelper->_sortOrder )
                      ->addPaging( $searchHelper->_page, $perPage )
                      ->addGroupBy( $searchHelper->_groupBy )
                      ->sum( $searchHelper->_selectColumns );
