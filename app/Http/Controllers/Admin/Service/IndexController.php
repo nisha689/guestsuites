@@ -101,5 +101,10 @@ class IndexController extends Controller
         }
         return response()->json( $response );
     }
+    
+     public function formBuilder( Request $request )
+    {
+        return view( 'admin.service.form_builder');
+    }
 
 }

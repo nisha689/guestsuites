@@ -167,6 +167,11 @@ Route::group( ['middleware' => ['admin'],
                                    'as'   => 'service.delete'] );
 
     /* Services End */
+    
+    /* Form builder */
+    Route::get( 'form-builder', ['uses' => 'Service\IndexController@FormBuilder'                                     ,'as'   => 'form_builder'] );
+
+    /* Services End */
 
     /* Discounts Start */
     Route::get( 'discounts', ['uses' => 'Discount\IndexController@index',
