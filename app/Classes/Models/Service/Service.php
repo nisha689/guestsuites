@@ -6,6 +6,7 @@ use App\Classes\Models\BaseModel;
 use App\Classes\Helpers\Service\Helper;
 use App\Classes\Helpers\SearchHelper;
 use App\Classes\Models\User\User;
+use App\Classes\Common\Common;
 
 class Service extends BaseModel
 {
@@ -13,7 +14,7 @@ class Service extends BaseModel
     protected $primaryKey = 'business_service_id';
     protected $entity = 'business_services';
     protected $searchableColumns = ['business_service_name'];
-    protected $fillable = ['business_service_name'];
+    protected $fillable = ['business_service_name','business_service_icon'];
     protected $_helper;
 
     public function __construct( array $attributes = [] )
@@ -142,6 +143,12 @@ class Service extends BaseModel
 
         $validationResult = $this->validateData( $rules, $data );
 
+		$filePath = $this->_helper->getImagePath(); 
+		
+        if ( ! empty( $data['business_service_icon'] ) ) {
+            $data['business_service_icon'] = Common::fileUpload( $filePath, $data['business_service_icon'], '', 256 );
+        }		
+		
         if ( $validationResult['success'] == false ) {
             $result['success'] = false;
             $result['message'] = $validationResult['message'];
@@ -150,6 +157,12 @@ class Service extends BaseModel
 
         if ( $businessServiceId > 0 ) {
             $classes = self::findOrFail( $data['business_service_id'] );
+			
+			/* Delete Image */
+            if ( ! empty( $data['business_service_icon'] ) ) {
+                Common::deleteFile( $classes->business_service_icon );
+            }
+			
             $classes->update( $data );
             $result['business_service_id'] = $classes->business_service_id;
         } else {

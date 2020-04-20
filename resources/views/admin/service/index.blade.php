@@ -98,6 +98,7 @@
     <script>
         var form = 'form#admin_exam_search_form';
 		var formAddEditForm = 'form#add_edit_exam_model_form';
+        window.baseURI = "{{ url('/') }}";
         window.addEditUrl = "{{ URL::to('admin/service/ajax_save') }}";
         window.getDataForEditUrl = "{{ URL::to('admin/service/get_data') }}";
 
@@ -106,6 +107,7 @@
         businessServiceNameElement = $(formAddEditForm + " #business_service_name");
         customErrorMessageElement = $(formAddEditForm + " .custom-error-message");
         customSuccessMessageElement = $(formAddEditForm + " .custom-success-message");
+        businessServiceIcon = $(formAddEditForm + " .user-profile-file");
         modelTitleElement = $(".modal-title");
 
         /* Reset Form */
@@ -115,7 +117,7 @@
             customSuccessMessageElement.hide();
             addEditModelIdElement.val(0);
             businessServiceNameElement.val("");
-            
+            businessServiceIcon.html('');
         }
 
         /* Open Add Model */
@@ -134,16 +136,16 @@
                 customErrorMessageElement.hide();
                 customSuccessMessageElement.hide();
                 showLoader();
-
+				var formData = new FormData($(this)[0]);
                 jQuery.ajax({
-                    url: window.addEditUrl,
+					url: window.addEditUrl,
+                    enctype: 'multipart/form-data',
                     method: 'post',
                     dataType: 'JSON',
-                    data: {
-                        '_token': window._token,
-                        'business_service_id': addEditModelIdElement.val(),
-                        'business_service_name': businessServiceNameElement.val(),
-                    },
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    data: formData,					
                     success: function (response) {
                         if (response.success == true) {
                             customSuccessMessageElement.html(response.message);
@@ -171,6 +173,9 @@
 
             addEditModelIdElement.val(data.business_service_id);
             businessServiceNameElement.val(data.business_service_name);
+			if( data.business_service_icon ){
+				businessServiceIcon.html('<img src="'+window.baseURI+'/'+data.business_service_icon+'">');
+			}
         }
 
         function openEditModal(modelSelector, id) {

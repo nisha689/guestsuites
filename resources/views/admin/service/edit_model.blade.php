@@ -24,6 +24,22 @@
                             {!! Form::text('business_service_name', old('business_service_name'), ['class' => 'form-control mb-4', 'required' => '']) !!}
                         </div>
                     </div>
+					<div class="row">
+					<div class="col-lg-12 col-md-12">
+                            <div id="photo-upload">
+                                <div class="upload-btn-wrapper">
+                                    <input type="file" style="display:none;" data-name="user-profile-file"
+                                           name="business_service_icon"
+                                           id="profile_photo">
+                                    <button type="button" class="btn btn-orange" id="select_photo">Upload an icon for
+                                        this service
+                                    </button>
+
+                                </div>
+                                <span class="user-profile-file" style="padding-left:10px;"></span>
+                            </div>                            
+                    </div>
+                    </div>
                 </div>
             </div>
 

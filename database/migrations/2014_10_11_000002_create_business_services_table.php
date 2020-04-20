@@ -16,6 +16,7 @@ class CreateBusinessServicesTable extends Migration
         Schema::create('gs_business_services', function (Blueprint $table) {
             $table->increments('business_service_id');
             $table->string('business_service_name')->nullable();
+            $table->string('business_service_icon')->nullable();
             $table->timestamps();
         });
     }
