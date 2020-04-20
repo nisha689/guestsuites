@@ -71,15 +71,21 @@ class HomeController extends Controller
         $customerMap = collect(\DB::select('SELECT count(user_id) as count FROM gs_users WHERE role_id = 3 
                                     AND created_at >= DATE_SUB(now(), INTERVAL 6 MONTH)
                                     GROUP BY month(created_at)'))->pluck('count')->toArray();
+        
+        $customerMap = array_map('intval', $customerMap);
 
         $businessMap = collect(\DB::select('SELECT count(user_id) as count FROM gs_users WHERE role_id = 2 
                                     AND created_at >= DATE_SUB(now(), INTERVAL 6 MONTH)
                                     GROUP BY month(created_at)'))->pluck('count')->toArray();
 
+        $businessMap = array_map('intval', $businessMap);
+
         $orderMap = collect(\DB::select('SELECT count(customer_booked_id) as count FROM gs_customer_booked 
                                         WHERE  created_at >= DATE_SUB(now(), INTERVAL 6 MONTH)
                                         GROUP BY month(created_at)'))->pluck('count')->toArray();
 
+        $orderMap = array_map('intval', $orderMap);
+        
         $transactionMap = collect(\DB::select('SELECT ROUND(sum(amount)) as count FROM gs_transaction 
                                         WHERE status = 1 AND created_at >= DATE_SUB(now(), INTERVAL 6 MONTH) 
                                         GROUP BY month(created_at)'))->pluck('count')->toArray();
