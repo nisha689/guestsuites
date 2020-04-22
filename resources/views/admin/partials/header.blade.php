@@ -26,6 +26,7 @@
                     <a class="dropdown-item" href="{{ url('admin/customers') }}">Customers</a>
                     <a class="dropdown-item" href="{{ url('admin/discounts') }}">Discounts</a>
                     <a class="dropdown-item" href="{{ url('admin/businesses') }}">Businesses</a>
+                    <a class="dropdown-item" href="{{ url('admin/question-builder') }}">Question Builder</a>
                     <a class="dropdown-item" href="{{ url('admin/email-templates') }}">Email Templates</a>
                     <a class="dropdown-item" href="{{ url('admin/transactions') }}">Transactions</a>
                     <a class="dropdown-item" href="{{ url('admin/backend-logs') }}">Backend Logs</a>

@@ -168,10 +168,10 @@ Route::group( ['middleware' => ['admin'],
 
     /* Services End */
     
-    /* Form builder */
-    Route::get( 'form-builder', ['uses' => 'Service\IndexController@FormBuilder'                                     ,'as'   => 'form_builder'] );
+    /* Question Builder */
+    Route::get( 'question-builder', ['uses' => 'QuestionBuilder\IndexController@questionBuilder'                                     ,'as'   => 'question-builder'] );
 
-    /* Services End */
+    /* Question Builder End */
 
     /* Discounts Start */
     Route::get( 'discounts', ['uses' => 'Discount\IndexController@index',

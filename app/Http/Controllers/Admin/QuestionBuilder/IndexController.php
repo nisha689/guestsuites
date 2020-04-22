@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Service;
+namespace App\Http\Controllers\Admin\QuestionBuilder;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,41 +11,24 @@ use App\Classes\Helpers\SearchHelper;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\Classes\Models\User\User;
+use App\Classes\Models\ServiceCategory\ServiceCategory;
 
 class IndexController extends Controller
 {
     protected $serviceObj;
+    protected $serviceCategoryObj;
     protected $userObj;
     protected $_helper;
 
     public function __construct( Service $serviceModel )
     {
         $this->serviceObj = $serviceModel;
+        $this->serviceCategoryObj = new ServiceCategory();
         $this->userObj = new User();
         $this->_helper = new Helper();
     }
 
-    public function index( Request $request )
-    {
-        $data = $request->all();
-        $page = ! empty( $data['page'] ) ? $data['page'] : 0;
-        $sortedBy = ! empty( $request->get( 'sorted_by' ) ) ? $request->get( 'sorted_by' ) : 'updated_at';
-        $sortedOrder = ! empty( $request->get( 'sorted_order' ) ) ? $request->get( 'sorted_order' ) : 'DESC';
-        $businessServiceName = ! empty( $data['business_service_name'] ) ? $data['business_service_name'] : "";
-        
-        $perPage = $this->_helper->getConfigPerPageRecord();
-        $recordStart = common::getRecordStart( $page, $perPage );
-        $filter = ['business_service_name'  => $businessServiceName];
-
-        $searchHelper = new SearchHelper( $page, $perPage, $selectColumns = ['*'], $filter, $sortOrder = [$sortedBy => $sortedOrder] );
-        $services = $this->serviceObj->getList( $searchHelper );
-        $totalRecordCount = $this->serviceObj->getListTotalCount( $searchHelper );
-        $paginationBasePath = Common::getPaginationBasePath( ['business_service_name' => $businessServiceName] );
-
-        $paging = $this->serviceObj->preparePagination( $totalRecordCount, $paginationBasePath, $searchHelper );
-        return view( 'admin.service.index', compact( 'businessServiceName','sortedBy', 'sortedOrder', 'recordStart', 'services', 'paging', 'totalRecordCount' ) );
-    }
-
+    
     public function delete( Request $request )
     {
         $data = $request->all();
@@ -85,21 +68,38 @@ class IndexController extends Controller
         }
     }
 
-    public function getDataForEditModel( Request $request )
+    public function questionBuilder( Request $request )
     {
-        $data = $request->all();
-        $results = $this->serviceObj->getDateById( $data['business_service_id'] );
+        $servicesWithCategory = [];
+        $searchHelper = new SearchHelper( -1, -1, ['*'], [], ['business_service_id' => 'ASC'] );
+        $services = $this->serviceObj->getList( $searchHelper );
+        
+        foreach ($services as $key => $service) {
 
-        $response = [];
-        $response['success'] = false;
-        $response['message'] = '';
+            $businessServiceIcon = !empty($service->business_service_icon) ? url($service->business_service_icon) : "";
+            $business_service_id = $service->business_service_id;
 
-        if ( ! empty( $results['business_service_id'] ) && $results['business_service_id'] > 0 ) {
-            $response['success'] = true;
-            $response['message'] = '';
-            $response['data'] = $results;
+            $serviceData = ['business_service_id' => $business_service_id,
+                            'business_service_name' => $service->business_service_name,
+                            'business_service_icon' => $businessServiceIcon,
+                            ];       
+
+            /* Service category */
+            $filter = ['business_service_id' => $business_service_id];
+            $searchHelper = new SearchHelper( -1, -1, ['*'], $filter, ['service_category_id' => 'ASC'] );
+            $serviceCategory = $this->serviceCategoryObj->getList( $searchHelper );
+            
+            $subCategoryData = [];
+
+            foreach ($serviceCategory as $key => $category) {
+                $subCategoryData[$category->service_category_id] = ['service_category_id' => $category->service_category_id,
+                                    'business_service_id' => $category->business_service_id,
+                                    'service_category_name' => $category->service_category_name,];
+                                    
+            }        
+            $serviceData['sub_category'] = $subCategoryData;
+            $servicesWithCategory[$service->business_service_id] = $serviceData;
         }
-        return response()->json( $response );
+        return view( 'admin.question_builder.index', compact('servicesWithCategory'));
     }
-
 }
