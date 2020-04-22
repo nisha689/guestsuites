@@ -17,6 +17,7 @@ class CreateCustomerBookedTable extends Migration
             $table->increments('customer_booked_id');
             $table->integer('business_id')->unsigned()->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
+            $table->integer('business_service_id')->unsigned()->nullable();
             $table->string('signature_img')->nullable();
             $table->timestamp('start_date_time')->nullable();
             $table->timestamp('finish_date_time')->nullable();
@@ -25,6 +26,7 @@ class CreateCustomerBookedTable extends Migration
 
             $table->foreign('business_id')->references('user_id')->on('gs_users')->onDelete('cascade');
             $table->foreign('customer_id')->references('user_id')->on('gs_users')->onDelete('cascade');
+            $table->foreign('business_service_id')->references('business_service_id')->on('gs_business_services')->onDelete('cascade');
         });
     }
 
