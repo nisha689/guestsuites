@@ -142,7 +142,7 @@
         /*----------------------------------  Teacher  -----------------------------------*/
 
         var addEditTeacherForm = 'form#add_edit_teacher_model_form';
-        window.addEditTeacherUrl = "{{ URL::to('admin/business/save_ajax') }}";
+        c
         
 
         addEditTeacherModelIdElement = $(addEditTeacherForm + " #add_edit_teacher_model_id");

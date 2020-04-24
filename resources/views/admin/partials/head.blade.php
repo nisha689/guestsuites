@@ -17,7 +17,7 @@
   @yield('meta')
   <link rel="shortcut icon" href="{{ url('favicon.ico') }}">
   <link rel="stylesheet" href="{{ url('common/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" media="all">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" media="all">
   <link rel="stylesheet" href="{{ url('common/css/font-awesome-all.css')}}" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
  <!-- <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Montserrat:300,400,500,600,700,800" rel="stylesheet">-->

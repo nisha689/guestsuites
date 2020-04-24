@@ -13,22 +13,7 @@ Vue.component('serviceApp', {
         { id:'check_options', label:'Checkbox Options' },
         { id:'image_options', label:'Image Options' }
       ],
-      services:{
-        "1": { "business_service_id": 1, "business_service_name": "Massage", "business_service_icon": "http://127.0.0.1/guestsuites/trunk/public/images/service/profile1_15875353871387492807.jpg",
-          "sub_category": {
-            "1": { "service_category_id": 1, "business_service_id": 1, "service_category_name": "Area of pain" },
-            "2": { "service_category_id": 2, "business_service_id": 1, "service_category_name": "Consensual areas" },
-            "3": { "service_category_id": 3, "business_service_id": 1, "service_category_name": "Day to day" },
-            "4": { "service_category_id": 4, "business_service_id": 1, "service_category_name": "Lifestyle" },
-            "5": { "service_category_id": 5, "business_service_id": 1, "service_category_name": "History" },
-            "6": { "service_category_id": 6, "business_service_id": 1, "service_category_name": "Consent" }
-          }
-        },
-        "2": { "business_service_id": 2, "business_service_name": "Facial", "business_service_icon": "", "sub_category": [] },
-        "3": { "business_service_id": 3, "business_service_name": "Hair from", "business_service_icon": "", "sub_category": []},
-        "4": { "business_service_id": 4, "business_service_name": "Eye lashes", "business_service_icon": "", "sub_category": [] },
-        "5": { "business_service_id": 5, "business_service_name": "Hair removal", "business_service_icon": "", "sub_category": [] }
-      },
+      services:{},
       serviceId:'',
       subCategoryId:'',
       typeOfQuestion:'text',
@@ -51,7 +36,7 @@ Vue.component('serviceApp', {
           questionObj['type'] = vm.typeOfQuestion;
           questionObj['question_id'] = '';
           questionObj['q_id'] = questionId;
-          questionObj['question'] = '';
+          questionObj['label'] = '';
           questionObj['business_service_id'] = '';
           questionObj['service_category_id'] = '';
 
@@ -92,6 +77,7 @@ Vue.component('serviceApp', {
     saveQuestion:function(){
       var vm = this;
       var queationIndex = vm.questionModel.q_id;
+
       if((vm.questionModel.type.indexOf('options')>=0) && (vm.questionModel.options.length == 0)){
         toastr.error('Question with options should have atleast 1 option.', 'Opps!')
         return;
@@ -104,11 +90,39 @@ Vue.component('serviceApp', {
       
       vm.questionModel['business_service_id'] = vm.serviceId;
       vm.questionModel['service_category_id'] = vm.subCategoryId;
+      var data = {};
 
-      vm.questions[queationIndex] = vm.questionModel;
-      vm.questionModel = {};
-      vm.edit_mode = false;
-      vm.addNewQuestion();
+      data['question_id']         = vm.questionModel['question_id'];
+      data['service_category_id'] = vm.questionModel['service_category_id'];
+      data['label']               = vm.questionModel['label'];
+      data['type']                = vm.questionModel['type'];
+      if(vm.questionModel.hasOwnProperty('options')){
+        data['option'] = vm.questionModel['options'];
+      }
+      data['parent_question_id']  = 0;
+      data['_token'] = window._token;
+
+      axios.post(vm.saveQuestionUrl, data)
+        .then(function (response) {
+          var data = response['data'];
+          if(data.success){
+            vm.questionModel['question_id'] = data.question_id;
+            if(vm.questionModel.hasOwnProperty('options')){
+             vm.questionModel['options'].forEach(function(option){
+                if(data.options.hasOwnProperty(option.o_id)){
+                  option['option_id'] = data['options'][option.o_id];
+                }
+              });
+            }
+            vm.questions[queationIndex] = vm.questionModel;
+            vm.questionModel = {};
+            vm.edit_mode = false;
+            vm.addNewQuestion();
+            
+          }
+        }).catch(function(error){
+          alert(error);
+        })
     },
     cancelQuestion:function(){
       var vm = this;
@@ -154,7 +168,21 @@ Vue.component('serviceApp', {
     removeQuestion:function(questionItem){
       var vm = this;
       function remove(){
-        console.log(questionItem);
+        var data = {};
+        data['question_id']  = questionItem['question_id'];
+        data['_token'] = window._token;
+        
+        axios.post(vm.removeQuestionUrl, data)
+        .then(function (response) {
+          var data = response['data'];
+          if(data.success){
+            if(vm.questions.hasOwnProperty(questionItem.q_id)){
+              delete vm.questions[questionItem.q_id];
+            }
+            vm.$forceUpdate();
+          }
+        })
+        .catch(function (error) { alert(error) });
       }
       swal({
         title: "Are you sure?",
@@ -187,8 +215,7 @@ Vue.component('serviceApp', {
           return;
         }
         vm.getFile(function(pathObj){
-          optionObj['img_path'] = pathObj.path;
-          optionObj['icon'] = pathObj.files;
+          optionObj['image_url'] = pathObj.path;
           vm.questionModel['options'].push(optionObj);
           vm.questionModel['optionModel'] = '';
           vm.questionModel['optionImgModel'] = ''
@@ -232,7 +259,14 @@ Vue.component('serviceApp', {
     }
 
   },
-  mounted:function(){}
+  mounted:function(){
+    this.services = window.services;
+    this.questions = window.questions;
+  },
+  created:function(){
+    this.saveQuestionUrl = window.baseURI+'/admin/question-builder/save_ajax';
+    this.removeQuestionUrl = window.baseURI+'/admin/question-builder/delete';
+  }
 });
 
 new Vue({

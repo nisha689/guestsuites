@@ -16,6 +16,7 @@ class CreateOptionTable extends Migration
         Schema::create('gs_option', function (Blueprint $table) {
             $table->increments('option_id');
             $table->string('option_name')->nullable();
+            $table->text('image_url')->nullable();
             $table->timestamps();
         });
     }

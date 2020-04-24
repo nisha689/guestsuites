@@ -171,6 +171,12 @@ Route::group( ['middleware' => ['admin'],
     /* Question Builder */
     Route::get( 'question-builder', ['uses' => 'QuestionBuilder\IndexController@questionBuilder'                                     ,'as'   => 'question-builder'] );
 
+    Route::post( 'question-builder/save_ajax', ['uses' => 'QuestionBuilder\IndexController@saveAjax',
+                                     'as'   => 'question_builder.save_ajax'] );
+
+    Route::post( 'question-builder/delete', ['uses' => 'QuestionBuilder\IndexController@delete',
+                                   'as'   => 'question_builder.delete'] );
+
     /* Question Builder End */
 
     /* Discounts Start */
