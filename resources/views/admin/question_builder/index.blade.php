@@ -1,8 +1,9 @@
 @extends('admin.layouts.app')
 @section('title', 'Question Builder | '.trans('admin.front_title'))
 @section('stylesheet')
+<link type="text/css" rel="stylesheet" href="{{ url('common/fonts/fontawesome/all.min.css')}}">
 <link type="text/css" rel="stylesheet" href="{{ url('common/css/toastr.min.css')}}">
-<link type="text/css" rel="stylesheet" href="{{ url('admin/css/style_temp.css')}}">
+<link type="text/css" rel="stylesheet" href="{{ url('admin/css/style_question.css')}}">
 @endsection
 @section('content')
 <div class="main_section">

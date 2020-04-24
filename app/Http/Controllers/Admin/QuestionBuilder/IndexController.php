@@ -79,7 +79,7 @@ class IndexController extends Controller
         if(!empty($data['question_id']) && $data['question_id'] > 0){
             $questionId = $data['question_id'];
 
-            $oldOptionOptionArray = \DB::select('SELECT option FROM gs_question WHERE question_id ='.$questionId);
+            $oldOptionOptionArray = \DB::select('SELECT `option` FROM gs_question WHERE `question_id`='.$questionId);
             if(!empty($oldOptionOptionArray[0]->option)){
                 $oldOptionArray = explode(',', $oldOptionOptionArray[0]->option);
             }    
