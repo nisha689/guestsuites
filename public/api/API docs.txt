@@ -424,3 +424,181 @@ RESPONSE:
     "response_error": "",
     "response_success": "success"
 }
+
+======================================================================================
+
+* Business service category
+
+POST: http://optimabranding.net/5/guest_suites/api/business_services_category.php
+
+BODY:
+---------------------
+token
+business_service_id
+
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "service_category": [
+            {
+                "service_category_id": "1",
+                "service_category_name": "Area of pain"
+            },
+            {
+                "service_category_id": "2",
+                "service_category_name": "Consensual areas"
+            },
+            {
+                "service_category_id": "6",
+                "service_category_name": "Consent"
+            },
+            {
+                "service_category_id": "3",
+                "service_category_name": "Day to day"
+            },
+            {
+                "service_category_id": "5",
+                "service_category_name": "History"
+            },
+            {
+                "service_category_id": "4",
+                "service_category_name": "Lifestyle"
+            }
+        ]
+    },
+    "response_success": ""
+}
+
+======================================================================================
+
+* Question and Option
+
+POST: http://optimabranding.net/5/guest_suites/api/question_option.php
+
+BODY:
+---------------------
+token
+service_category_id
+
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "question": [
+            {
+                "question_id": "1",
+                "service_category_id": "1",
+                "label": "Select the parts of your body that have pain or discomfort.",
+                "type": "check_options",
+                "parent_question_id": "0",
+                "option": [
+                    {
+                        "option_id": "3",
+                        "option_name": "Arms/Hands",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "6",
+                        "option_name": "Back",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "8",
+                        "option_name": "Feat",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "7",
+                        "option_name": "Glutes",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "1",
+                        "option_name": "Head",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "4",
+                        "option_name": "Lags",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "5",
+                        "option_name": "Neck",
+                        "image_url": null
+                    },
+                    {
+                        "option_id": "2",
+                        "option_name": "Shoulders",
+                        "image_url": null
+                    }
+                ]
+            }
+        ]
+    },
+    "response_success": ""
+}
+
+======================================================================================
+
+* Customer services booking
+
+POST: http://optimabranding.net/5/guest_suites/api/customer_services_booking.php
+
+BODY:
+---------------------
+{
+    "token": "MTU4Nzk2MzQyMA==",
+    "business_service_id": "1",
+    "business_id": "2",
+    "customer_id": "3",
+    "answer": [
+        {
+            "service_category_id": 1,
+            "question_id": 1,
+            "option_id": 1,
+            "answer" : "answer"
+        }
+    ]
+}
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "customer_booked_id": 3
+    },
+    "response_success": "Order added successfully"
+}
+
+======================================================================================
+
+* Customer services booking
+
+POST: http://optimabranding.net/5/guest_suites/api/customer_services_booking_finish.php
+
+BODY:
+---------------------
+token
+customer_booked_id
+
+
+RESPONSE:
+---------------------
+{
+    "response_code": "1",
+    "response_error": "",
+    "response_data": {
+        "customer_booked_id": "3"
+    },
+    "response_success": "Order finished successfully"
+}
