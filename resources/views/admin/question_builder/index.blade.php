@@ -19,21 +19,8 @@
           <div id="serviceApp"><service-app></service-app></div>
           <script type="text/x-template" id="serviceAppTemplate">
             <div class="container-fluid mt-4">
-                <div class="card card-question-list mb-3" v-if="Object.keys(questions).length > 0">
-                  <div class="card-header">
-                    <span class="card-title">Questions</span>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item" v-for="(questionItem,questionIndex,questionNumber) in questions" :key="questionIndex"  :id="questionItem.q_id">
-                      <span>@{{questionItem.label}}</span>
-                      <button class="btn btn-sm btn-remove-question" @click="removeQuestion(questionItem)"><i class="fa fa-trash"></i></button>
-                      <button class="btn btn-sm btn-link" @click="editQuestion(questionItem)"><i class="fa fa-pen"></i></button>
-                    </li>
-                  </ul>
-                </div>
 
                 {{-- <button type="button" class="btn btn-sm btn-primary" @click="getQuestions">Get Questions</button> --}}
-
                 <div class="card card-question-add mb-2">
                   <div class="card-body d-flex pb-0">
                     <select v-model="serviceId" id="questionServiceModel" class="custom-select custom-select-sm mr-2" @change="subCategoryId = ''">
@@ -92,6 +79,21 @@
                     <button class="btn btn-sm btn-primary " :disabled="questionModel.label == ''" @click="saveQuestion">Save</button>
                   </div>
                 </div>
+
+
+                <div class="card card-question-list mb-3" v-if="Object.keys(questions).length > 0">
+                  <div class="card-header">
+                    <span class="card-title">Questions</span>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" v-for="(questionItem,questionIndex,questionNumber) in questions" :key="questionIndex"  :id="questionItem.q_id">
+                      <span>@{{questionItem.label}}</span>
+                      <button class="btn btn-sm btn-remove-question" @click="removeQuestion(questionItem)"><i class="fa fa-trash"></i></button>
+                      <button class="btn btn-sm btn-link" @click="editQuestion(questionItem)"><i class="fa fa-pen"></i></button>
+                    </li>
+                  </ul>
+                </div>
+
               </div>
             </script>
         </div>
