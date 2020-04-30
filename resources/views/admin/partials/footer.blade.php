@@ -8,11 +8,11 @@
             <div class="col-lg-7 col-md-12 d-flex align-items-center">
                 <div class="footer_menu">
                     <ul>
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/') }}">About us</a></li>
-                        <li><a href="{{ url('/') }}">Terms and Conditions</a></li>
-                        <li><a href="{{ url('/') }}">Privacy policy</a></li>
-                        <li><a href="{{ url('/') }}">Contact us</a></li>
+                        <li><a href="javascript:void(0)">Home</a></li>
+                        <li><a href="javascript:void(0)">About us</a></li>
+                        <li><a href="javascript:void(0)">Terms and Conditions</a></li>
+                        <li><a href="javascript:void(0)">Privacy policy</a></li>
+                        <li><a href="javascript:void(0)">Contact us</a></li>
                     </ul>
                 </div>
             </div>
