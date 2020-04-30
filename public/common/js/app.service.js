@@ -29,6 +29,28 @@ Vue.component('serviceApp', {
     cloneJson:function(json){
       return JSON.parse(JSON.stringify(json));
     },
+    addToObject:function (obj, key, value, index) {
+		var temp = {};
+		var i = 0;
+		
+		for (var prop in obj) {
+			if (obj.hasOwnProperty(prop)) {
+				if (i === index && key && value) {
+					temp[key] = value;
+				}
+
+				temp[prop] = obj[prop];
+				i++;
+			}
+		}
+
+		
+		if (!index && key && value) {
+			temp[key] = value;
+		}
+
+		return temp;
+	},
     addNewQuestion:function(){
       var vm = this;
       var questionId = vm.ID('question');
@@ -114,7 +136,12 @@ Vue.component('serviceApp', {
                 }
               });
             }
-            vm.questions[queationIndex] = vm.questionModel;
+            if(vm.edit_mode){
+            	vm.questions[queationIndex] = vm.questionModel;
+            }else{
+            	vm.questions = vm.addToObject(vm.questions,queationIndex, vm.questionModel, 0);
+
+            }
             vm.questionModel = {};
             vm.edit_mode = false;
             vm.addNewQuestion();
@@ -146,6 +173,11 @@ Vue.component('serviceApp', {
       }
       
     },
+    scrollToEditor:function(){
+    	$('html, body').animate({
+        	scrollTop: $("#question_editor").offset().top
+    	}, 800);
+    },
     editQuestion:function(questionItem){
       var vm = this;
       vm.edit_mode = true;
@@ -164,6 +196,7 @@ Vue.component('serviceApp', {
       vm.subCategoryId = questionObj['service_category_id'];
 
       vm.questionModel = questionObj;
+      vm.scrollToEditor();
     },
     removeQuestion:function(questionItem){
       var vm = this;

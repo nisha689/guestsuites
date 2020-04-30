@@ -21,7 +21,7 @@
             <div class="container-fluid mt-4">
 
                 {{-- <button type="button" class="btn btn-sm btn-primary" @click="getQuestions">Get Questions</button> --}}
-                <div class="card card-question-add mb-2">
+                <div class="card card-question-add mb-2" id="question_editor">
                   <div class="card-body d-flex pb-0">
                     <select v-model="serviceId" id="questionServiceModel" class="custom-select custom-select-sm mr-2" @change="subCategoryId = ''">
                       <option value="">Select service type</option>
